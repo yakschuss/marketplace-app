@@ -1,0 +1,22 @@
+%h1 this is the show view!
+.container
+  .row
+    .column.fourth
+      %p Name:
+      = @venue.name
+    .column.fourth
+      %p Address:
+      = @venue.address
+    .column.fourth
+      %p Latitude:
+      = @venue.latitude
+    .column.fourth
+      %p Longitude:
+      = @venue.longitude
+.spacer-xl
+.container.stacking
+  .row
+    .column.fourth
+      = link_to "Edit", edit_admin_venue_path(@venue), class: "button"
+    .column.fourth
+      = link_to "Delete", admin_venue_path(@venue), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, class: "button button-delete"

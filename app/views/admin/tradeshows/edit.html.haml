@@ -1,5 +1,7 @@
 .container
-  .form-title New TradeShow
+  %h1
+    ="#{@tradeshow.title}"
+  .form-title Edit TradeShow
   %br/
   .form
     .form-group-columns
@@ -14,4 +16,4 @@
         = f.date_select(:date , :start_year => 2016)
         %br/
         %br/
-        = f.submit :save, class: "button"
+        = f.submit "Update", class: "button"

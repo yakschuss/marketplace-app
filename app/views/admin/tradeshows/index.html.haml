@@ -1,1 +1,7 @@
 %h1 index for tradeshows
+
+ = @tradeshows.each do |tradeshow|
+   = @tradeshow.name
+   = @tradeshow.description
+   = @tradeshow.location
+   = @tradeshow.date
