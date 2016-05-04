@@ -3,6 +3,6 @@ class Admin::TradeshowsController < Admin::ApplicationController
   end
 
   def new
-    @tradshow = Tradeshow.new
+    @tradeshow = Tradeshow.new
   end
 end

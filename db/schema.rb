@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504184937) do
+ActiveRecord::Schema.define(version: 20160504185645) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160504184937) do
     t.float    "avg_price_per_sqfoot"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.date     "date"
   end
 
   create_table "venues", force: :cascade do |t|
