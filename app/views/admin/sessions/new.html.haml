@@ -1,0 +1,11 @@
+%h1 This page requires sign in.
+.row
+  %div
+    = form_for :session, url: admin_sessions_path do |f|
+      .form-group.col-md-4
+        = f.text_field :username, autofocus: true, class: 'form-control', placeholder: "Username"
+      .form-group.col-md-4
+        = f.password_field :password, class: 'form-control', placeholder: "Password"
+      .form-group
+        %br/
+        = f.submit "Sign in", class: 'button'
