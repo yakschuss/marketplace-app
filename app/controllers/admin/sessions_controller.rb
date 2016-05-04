@@ -4,14 +4,13 @@ class Admin::SessionsController < Admin::ApplicationController
   end
 
   def create
-    admin = Admin.find_by(username: params[:session][:username])
-
-    if admin && admin.authenticate(params[:session][:passsword])
+    admin = Admin.find_by(username: params[:session][:username].downcase)
+    if admin && admin.authenticate(params[:session][:password])
       create_session(admin)
-      flash[:notice] = "welcome #{admin.username}!"
-      redirect_to admin_root_path
+      flash[:notice] = "Welcome back"
+      redirect_to admin_admin_path(admin)
     else
-      flash.now[:error] = "invalid email/password combination"
+      flash.now[:alert] = "invalid email/password combination"
       render :new
     end
   end
@@ -22,7 +21,7 @@ class Admin::SessionsController < Admin::ApplicationController
     redirect_to root_path
   end
 
-  private
+private
 
   def create_session(admin)
     session[:admin_id] = admin.id
@@ -35,5 +34,6 @@ class Admin::SessionsController < Admin::ApplicationController
   def current_user
     Admin.find_by(id: session[:admin_id])
   end
+
 
 end
