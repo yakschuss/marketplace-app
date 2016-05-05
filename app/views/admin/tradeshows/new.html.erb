@@ -17,7 +17,7 @@
 
         <br/>
 
-        <%= f.fields_for :booths, Booth.new, index: false do |booth_form| %>
+        <%= f.fields_for :booths, Booth.new do |booth_form| %>
           <ul>
             <div class="booth-form-group">
                 <%= render partial: "booth", locals: {booth_form: booth_form} %>
