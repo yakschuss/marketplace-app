@@ -5,6 +5,7 @@ class PublicController < ApplicationController
       @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
         marker.lat venue.latitude
         marker.lng venue.longitude
+        marker.infowindow venue.address
       end
   end
 end
