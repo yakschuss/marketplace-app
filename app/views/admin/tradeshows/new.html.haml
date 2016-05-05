@@ -14,4 +14,11 @@
         = f.date_select(:date , :start_year => 2016)
         %br/
         %br/
+        %ul
+        = f.fields_for :booths, class: "booth-form-group" do |booth_form|
+          .booth-form-group
+            = render partial: "booth", locals: {booth_form: booth_form}
+
+        %span.fa.fa-plus-circle.booth-form-add{class: "fa-1.5x"}
+
         = f.submit :save, class: "button"

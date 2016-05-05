@@ -1,5 +1,6 @@
 class Admin::TradeshowsController < Admin::ApplicationController
   def index
+    @tradeshows = Tradeshow.all
   end
 
   def show
