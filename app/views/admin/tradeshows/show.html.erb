@@ -1,5 +1,6 @@
-<h1>this is the show view!</h1>
+
 <div class="container">
+  <h1>this is the show view!</h1>
   <div class="row">
     <div class="column fourth">
       <p>Title:</p><%= @tradeshow.title %>
@@ -14,7 +15,14 @@
       <p>Location:</p><%= @tradeshow.location %>
     </div>
   </div>
+  <div class="tradeshow-booths column fourth">
+    <p>Booth: </p>
+    <% @tradeshow.booths.each do |booth| %>
+      <%= "#{booth.size} Sq. Feet" %>
+      <% end %>
+  </div>
 </div>
+
 <div class="spacer-xl"></div>
 <div class="container stacking">
   <div class="row">

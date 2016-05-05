@@ -13,6 +13,8 @@ class Admin::TradeshowsController < Admin::ApplicationController
 
   def create
     @tradeshow = Tradeshow.create(tradeshow_params)
+    create_booths
+
     if @tradeshow.save
       flash[:notice] = "Record was created successfully."
       redirect_to admin_tradeshow_path(@tradeshow)
@@ -59,4 +61,17 @@ class Admin::TradeshowsController < Admin::ApplicationController
   def tradeshow_params
     params.require(:tradeshow).permit(:title, :description, :location, :date)
   end
+
+  def booth_params
+    params.require(:tradeshow).permit(booths_attributes: :size)
+  end
+
+  def create_booths
+    params[:tradeshow][:booths_attributes].values.each do |booth_params|
+      @tradeshow.booths.create(booth_params)
+    end
+  end
+
+
+
 end

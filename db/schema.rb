@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504185645) do
+ActiveRecord::Schema.define(version: 20160505154626) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20160504185645) do
 
   create_table "booths", force: :cascade do |t|
     t.integer  "size"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "tradeshow_id"
   end
 
   create_table "tradeshows", force: :cascade do |t|
