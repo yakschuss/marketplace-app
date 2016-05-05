@@ -1,0 +1,19 @@
+.container
+  %h1
+    ="#{@tradeshow.title}"
+  .form-title Edit TradeShow
+  %br/
+  .form
+    .form-group-columns
+      =form_for [:admin, @tradeshow]  do |f|
+        = f.text_field :title, placeholder: "Title"
+        %br/
+        %br/
+        = f.text_area :description, placeholder: "Description"
+        %br/
+        = f.text_field :location, placeholder: "Address"
+        %br/
+        = f.date_select(:date , :start_year => 2016)
+        %br/
+        %br/
+        = f.submit "Update", class: "button"

@@ -1,0 +1,133 @@
+@import "font-awesome"
+@import "booths"
+
+*, *::before, *::after
+   box-sizing: border-box
+
+
+html
+   height: 100%
+   font-size: 100%
+
+
+body
+   font-family: 'Source Sans Pro'
+   color:white
+   min-height: 100%
+   margin-top: 60px
+
+
+.container
+   margin: 0 auto
+   width: 90%
+   max-width: 64rem
+
+
+.container.narrow
+   max-width: 56rem
+.stacking
+   position: relative
+
+.row:before
+.row:after
+   content: ""
+   display: table
+   clear: both
+
+.column
+   float: left
+   padding-left: 1rem
+   padding-right: 1rem
+
+
+@media (min-width: 640px)
+   html
+      font-size: 112%
+   .column
+      float: left
+      padding-left: 1rem
+      padding-right: 1rem
+   .column.full
+      width: 100%
+   .column.two-thirds
+      width: 66.7%
+   .column.half
+      width: 50%
+   .column.third
+      width: 33.3%
+   .column.fourth
+      width: 25%
+   .column.flow-opposite
+      float: right
+
+
+
+
+.clearfix::before,
+.clearfix::after
+   content: " "
+   display: table
+
+
+.clearfix::after
+   clear: both
+
+.button
+   border-radius: 5px
+   font-family: "Source Sans Pro"
+   color: #ffffff
+   font-size: 20px
+   background: #129793
+   padding: 10px 20px 10px 20px
+   text-decoration: none
+
+.button:hover
+   background: #48EAE4
+   text-decoration: none
+
+.button-delete
+   background: #FF5C5C
+.button-delete:hover
+   background: #F50000
+   text-decoration: none
+
+
+input
+   display: block
+   margin: 0
+   font-family: sans-serif
+   font-size: 18px
+   appearance: none
+   box-shadow: none
+   border-radius: 4px
+
+input:focus
+   outline: none
+
+textarea
+   display: block
+   margin: 0
+   font-family: sans-serif
+   font-size: 18px
+   appearance: none
+   box-shadow: none
+   border-radius: 4px
+
+.spacer
+   margin-top: 15px
+   margin-bottom: 15px
+.spacer-xl
+   margin-top: 65px
+   margin-bottom: 65px
+.flash
+   .alert-success
+      opacity: 1
+      color: #3c763d
+      background-color: #dff0d8
+      border-color: #d6e9c6
+
+   .alert
+      padding: 15px
+      margin-bottom: 20px
+      border: 1px solid transparent
+      border-radius: 4px

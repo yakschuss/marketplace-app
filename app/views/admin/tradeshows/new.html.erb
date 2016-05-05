@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="form-title">New TradeShow</div>
+  <br/>
+  <div class="form">
+    <div class="form-group-columns">
+      <%= form_for [:admin, @tradeshow] do |f| %>
+        <%= f.text_field :title, placeholder: "Title" %>
+        <br/>
+        <br/>
+        <%= f.text_area :description, placeholder: "Description" %>
+
+        <br/>
+        <%= f.text_field :location, placeholder: "Address" %>
+        <br/>
+        <%= f.date_select(:date , :start_year => 2016) %>
+        <br/>
+
+        <br/>
+
+        <%= f.fields_for :booths, Booth.new do |booth_form| %>
+          <ul>
+            <div class="booth-form-group">
+                <%= render partial: "booth", locals: {booth_form: booth_form} %>
+            </div>
+          </ul>
+        <% end %>
+        <span class="fa-1.5x fa fa-plus-circle booth-form-add"></span>
+        <%= f.submit :save, class: "button" %>
+      <% end %>
+    </div>
+  </div>
+</div>

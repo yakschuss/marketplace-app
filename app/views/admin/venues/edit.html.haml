@@ -1,0 +1,13 @@
+.container
+  .form-title Edit Venue
+  %br/
+  .form
+    .form-group-columns
+      =form_for [:admin, @venue]  do |f|
+        = f.text_field :name, placeholder: "Name"
+        %br/
+        %br/
+        = f.text_field :address, placeholder: "Address"
+        %br/
+        %br/
+        = f.submit "Update", class: "button"
