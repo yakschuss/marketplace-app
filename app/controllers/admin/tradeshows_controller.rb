@@ -21,6 +21,7 @@ class Admin::TradeshowsController < Admin::ApplicationController
   def create
     @tradeshow = Tradeshow.create(tradeshow_params)
     create_booths
+    @tradeshow.associated_venue
 
     if @tradeshow.save
       flash[:notice] = "Record was created successfully."
@@ -66,7 +67,7 @@ class Admin::TradeshowsController < Admin::ApplicationController
   private
 
   def tradeshow_params
-    params.require(:tradeshow).permit(:title, :description, :location, :date)
+    params.require(:tradeshow).permit(:title, :description, :location, :date, :venue_name)
   end
 
   def booth_params
