@@ -9,6 +9,13 @@ class Admin::TradeshowsController < Admin::ApplicationController
 
   def new
     @tradeshow = Tradeshow.new
+    @tradeshow.booths.build
+  end
+
+  def booth_add
+    @tradeshow = Tradeshow.new
+    @tradeshow.booths.build
+    render partial: "admin/tradeshows/booth_add", layout: false
   end
 
   def create
