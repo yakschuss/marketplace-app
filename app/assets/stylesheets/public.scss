@@ -1,0 +1,42 @@
+// Place all the styles related to the Public controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.wrapper .map-content{
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+.wrapper .tradeshow-content{
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+.wrapper, html, body{
+    height: 100%;
+}
+
+#map {
+    width: 60%;
+    height: 100%;
+}
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: block;
+  float: left;
+  height: 100px;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+}
+
+.media-object {
+ float: left;
+ margin-right: 1em;
+}

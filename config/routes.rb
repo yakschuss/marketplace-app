@@ -7,6 +7,7 @@ namespace :admin do
   resources :tradeshows
   root to: "sessions#new"
 end
+  get "public/index"
 
-
+  root to: "public#index"
 end
