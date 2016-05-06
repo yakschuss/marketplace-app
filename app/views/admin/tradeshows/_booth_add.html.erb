@@ -1,0 +1,3 @@
+<%= form_for [:admin, @tradeshow], authenticity_token: false do |f| %>
+   <%= render partial: "booth_fields", locals: {f: f} %>
+<% end %>

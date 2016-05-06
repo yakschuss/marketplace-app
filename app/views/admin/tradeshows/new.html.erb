@@ -14,17 +14,11 @@
         <br/>
         <%= f.date_select(:date , :start_year => 2016) %>
         <br/>
-
         <br/>
 
-        <%= f.fields_for :booths, Booth.new do |booth_form| %>
-          <ul>
-            <div class="booth-form-group">
-                <%= render partial: "booth", locals: {booth_form: booth_form} %>
-            </div>
-          </ul>
-        <% end %>
-        <span class="fa-1.5x fa fa-plus-circle booth-form-add"></span>
+          <%= render partial: "booth_fields", locals: {f: f} %>
+          <%= link_to "", "#", id: :booth_add, class: "fa-1.5x fa fa-plus-circle booth-form-add" %>
+
         <%= f.submit :save, class: "button" %>
       <% end %>
     </div>
