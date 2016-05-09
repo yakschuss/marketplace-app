@@ -10,17 +10,30 @@
         <%= f.text_area :description, placeholder: "Description" %>
 
         <br/>
+        <br/>
+        <%= f.text_field :venue_name, placeholder: "Venue" %>
+        <br/>
         <%= f.text_field :location, placeholder: "Address" %>
         <br/>
+
         <%= f.date_select(:date , :start_year => 2016) %>
         <br/>
         <br/>
 
-          <%= render partial: "booth_fields", locals: {f: f} %>
-          <%= link_to "", "#", id: :booth_add, class: "fa-1.5x fa fa-plus-circle booth-form-add" %>
+          <%= f.fields_for :booths, Booth.new do |booth_form| %>
+          <div class="booth-form-group">
+              <!-- Done in JS right now tradeshow.js -->
+            </div>
+          <% end %>
 
+          <%#= render partial: "booth_fields", locals: {f: f} %>
+          <%= link_to "", "#", id: :booth_add, class: "fa-1.5x fa fa-plus-circle booth-form-add" %>
+          <br/>
+          <br/>
+
+          <div class="spacer"></div>
         <%= f.submit :save, class: "button" %>
-      <% end %>
+        <% end %>
     </div>
   </div>
 </div>
