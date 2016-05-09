@@ -1,6 +1,7 @@
 class Tradeshow < ActiveRecord::Base
   has_many :booths
   belongs_to :venue
+  before_create :associated_venue
 
   accepts_nested_attributes_for :booths
   accepts_nested_attributes_for :venue
