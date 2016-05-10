@@ -6,9 +6,11 @@
 
      <div class="tradeshow-content">
        <div class="container">
-         <% @tradeshows.each do |tradeshow| %>
+         <ul class="tradeshows">
+        <% @tradeshows.each do |tradeshow| %>
          <div class="spacer"></div>
          <div class="card">
+           <%= content_tag :li, id: tradeshow.venue_id do %>
              <a href="#">
                <img class="media-object" src="http://placehold.it/64x64" alt="...">
              </a>
@@ -17,7 +19,10 @@
              </h4>
              <p> <%= tradeshow.location %> </p>
              </div>
+             <% end %>
           <% end %>
+          <%= will_paginate @tradeshows %>
+        </ul>
        </div>
      </div>
 
@@ -25,10 +30,21 @@
 
 
 <script>
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
+$(document).ready(function(){
+  handler = Gmaps.build('Google', { markers: { do_clustering: true  } });
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    var markers = handler.addMarkers(<%=raw @hash.to_json %>);
+
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+
+      $(".card li").on("click", function() {
+        i = $(this).attr("id");
+        marker = _.find(markers, function(obj) { return obj.title == i })
+        var map = handler.map
+        marker.infowindow.open(map, marker.serviceObject);
+        });
+      });
+   });
+
 </script>

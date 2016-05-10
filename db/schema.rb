@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506185154) do
+ActiveRecord::Schema.define(version: 20160510184847) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -22,9 +22,11 @@ ActiveRecord::Schema.define(version: 20160506185154) do
 
   create_table "booths", force: :cascade do |t|
     t.integer  "size"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "tradeshow_id"
+    t.string   "incomplete_size"
+    t.string   "cost"
   end
 
   create_table "tradeshows", force: :cascade do |t|
@@ -32,11 +34,42 @@ ActiveRecord::Schema.define(version: 20160506185154) do
     t.string   "description"
     t.string   "location"
     t.float    "avg_price_per_sqfoot"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.date     "date"
     t.integer  "venue_id"
     t.string   "venue_name"
+    t.string   "website"
+    t.string   "conference_event_dates"
+    t.string   "expo_exhibit_dates"
+    t.string   "expo_exhibit_hours"
+    t.string   "classification"
+    t.string   "primary_industry"
+    t.string   "other_industries"
+    t.string   "estimated_attendance"
+    t.string   "cost_to_attend"
+    t.string   "audience"
+    t.string   "notes"
+    t.string   "venue"
+    t.string   "venue_phone_number"
+    t.string   "venue_type"
+    t.string   "official_conference_hotel"
+    t.string   "conference_hotel_url"
+    t.string   "show_owner"
+    t.string   "exhibitor_prospectus"
+    t.string   "sponsorship"
+    t.string   "sponsorship_details"
+    t.string   "conference_event_hours"
+    t.string   "number_of_exhibitors"
+    t.string   "show_manager"
+    t.string   "exhibit_floor_plan"
+    t.string   "event_square_footage"
+    t.string   "prospectus_pdf"
+    t.string   "previous_attendance"
+    t.string   "sic_code"
+    t.string   "naics_code"
+    t.string   "first_move_in_date"
+    t.string   "exhibit_floor_plan_pdf"
   end
 
   create_table "venues", force: :cascade do |t|

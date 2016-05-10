@@ -1,12 +1,19 @@
 class PublicController < ApplicationController
   def index
-      @venues = Venue.all
-      @tradeshows = Tradeshow.all
+      @venues = Venue.has_address
+      @tradeshows = Tradeshow.paginate(page: params[:page], per_page: 5)
+
       @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
+        info_window = "#{venue.address}"
         marker.lat venue.latitude
         marker.lng venue.longitude
-        #marker.infowindow venue.name how to get both?
-        marker.infowindow venue.address
+        marker.infowindow info_window
+        marker.json({:id => venue.id})
+      #   marker.picture({
+      #     "url" => "#{}",
+      #     "width" =>  "36",
+      #     "height" => "36"
+      # })
       end
   end
 end
