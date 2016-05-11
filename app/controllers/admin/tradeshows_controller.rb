@@ -12,12 +12,6 @@ class Admin::TradeshowsController < Admin::ApplicationController
     @tradeshow.booths.build
   end
 
-  def booth_add
-    @tradeshow = Tradeshow.new
-    @tradeshow.booths.build
-    render partial: "admin/tradeshows/booth_add", layout: false
-  end
-
   def create
     @tradeshow = Tradeshow.create(tradeshow_params)
      #create_booths
