@@ -27,7 +27,7 @@ require 'open-uri'
                event_title = event.at_css('a.url.summary').text
                inner_website_event_link = event.at_css('a.url.summary')[:href]
 
-               tradeshow_hash = {}
+                tradeshow_hash = {}
                booth_hash = {}
 
                tradeshow_hash[:title] = event_title
@@ -43,6 +43,7 @@ require 'open-uri'
                                     tradeshow_hash[:website] = value
                               when "Conference/Event Dates"
                                     tradeshow_hash[:conference_event_dates] = value
+                                    tradeshow_hash[:date] = value
                               when "Expo/Exhibit Dates"
                                     tradeshow_hash[:expo_exhibit_dates] = value
                               when "Expo/Exhibit Hours"
@@ -63,10 +64,6 @@ require 'open-uri'
                                     tradeshow_hash[:notes] = value
                               when "Venue"
                                     tradeshow_hash[:venue_name] = value
-                                    unless value == "Venue TBD"
-                                          venue = Venue.create!(address: value)
-                                          tradeshow_hash[:venue_id] = venue.id
-                                    end
                               when "Venue Phone"
                                     tradeshow_hash[:venue_phone_number] = value
                               when "Venue Type"
@@ -109,6 +106,17 @@ require 'open-uri'
                                     next
                         end
                      end
+
+                     title_address_array =  doc.css('.heading-copy p + p').text.strip.split("\t", 2)
+
+                     address_string = title_address_array.last.strip.split.join(' ')
+                     puts address_string
+
+                     tradeshow_hash[:location] = address_string
+
+
+
+
               tradeshow = Tradeshow.create!(tradeshow_hash)
 
                     doc.css('#event-booth table tr').each do |tr|

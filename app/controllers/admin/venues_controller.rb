@@ -1,14 +1,17 @@
 class Admin::VenuesController < Admin::ApplicationController
   def index
     @venues = Venue.all
+    @disable_search = true
   end
 
   def show
     @venue = Venue.find(params[:id])
+    @disable_search = true
   end
 
   def new
     @venue = Venue.new
+    @disable_search = true
   end
 
   def create
@@ -24,11 +27,12 @@ class Admin::VenuesController < Admin::ApplicationController
 
   def edit
     @venue = Venue.find(params[:id])
+    @disable_search = true
   end
 
   def update
     @venue = Venue.find(params[:id])
-    @venue.assign_attributes(venue_params)
+    @venue.update_attributes(venue_params)
 
 
     if @venue.save

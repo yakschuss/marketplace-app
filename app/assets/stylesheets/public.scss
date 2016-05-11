@@ -33,7 +33,7 @@
   height: 100px;
   margin: 1rem;
   position: relative;
-  width: 300px;
+  width: 450px;
 }
 
 .media-object {
@@ -43,4 +43,29 @@
 
 .card li {
   list-style: none;
+}
+
+.card li:hover {
+  list-style: none;
+  cursor: pointer;
+}
+
+.page-links {
+  text-align:center;
+}
+
+.page-links a {
+  font-family: 'Source Sans Pro';
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: #000;
+}
+
+.page-links a:hover {
+  color: #129793;
+  cursor: pointer;
+}
+.page-links .current {
+  font-size: 1.75rem;
+  color: #129793;
 }

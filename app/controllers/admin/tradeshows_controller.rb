@@ -1,21 +1,22 @@
 class Admin::TradeshowsController < Admin::ApplicationController
   def index
     @tradeshows = Tradeshow.all
+    @disable_search = true
   end
 
   def show
     @tradeshow = Tradeshow.find(params[:id])
+    @disable_search = true
   end
 
   def new
     @tradeshow = Tradeshow.new
     @tradeshow.booths.build
+    @disable_search = true
   end
 
   def create
     @tradeshow = Tradeshow.create(tradeshow_params)
-     #create_booths
-    # @tradeshow.associated_venue
 
     if @tradeshow.save
       flash[:notice] = "Record was created successfully."
@@ -28,11 +29,12 @@ class Admin::TradeshowsController < Admin::ApplicationController
 
   def edit
     @tradeshow = Tradeshow.find(params[:id])
+    @disable_search = true
   end
 
   def update
     @tradeshow = Tradeshow.find(params[:id])
-    @tradeshow.assign_attributes(tradeshow_params)
+    @tradeshow.update_attributes(tradeshow_params)
 
 
     if @tradeshow.save

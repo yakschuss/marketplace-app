@@ -21,11 +21,14 @@
              </div>
              <% end %>
           <% end %>
-          <%= will_paginate @tradeshows %>
+
         </ul>
        </div>
      </div>
-
+     <div class="spacer"></div>
+       <div class="page-links">
+         <%= will_paginate @tradeshows %>
+       </div>
    </div>
 
 
@@ -33,16 +36,22 @@
 $(document).ready(function(){
   handler = Gmaps.build('Google', { markers: { do_clustering: true  } });
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    var markers = handler.addMarkers(<%=raw @hash.to_json %>);
-
+    markers_json = <%=raw @hash.to_json %>;
+    markers = _.map(markers_json, function(marker_json){
+      marker = handler.addMarker(marker_json)
+      _.extend(marker, marker_json);
+      return marker;
+    });
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
 
       $(".card li").on("click", function() {
-        i = $(this).attr("id");
-        marker = _.find(markers, function(obj) { return obj.title == i })
-        var map = handler.map
-        marker.infowindow.open(map, marker.serviceObject);
+
+        var i = $(this).attr("id");
+        var related_marker;
+
+        related_marker = markers.filter(function(m) { return m.id == i; })[0]
+          related_marker.open(handler.map, related_marker.serviceObject);
         });
       });
    });

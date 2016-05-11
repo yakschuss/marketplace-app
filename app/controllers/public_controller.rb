@@ -1,7 +1,12 @@
 class PublicController < ApplicationController
   def index
       @venues = Venue.has_address
-      @tradeshows = Tradeshow.paginate(page: params[:page], per_page: 5)
+      @tradeshows = Tradeshow.all.order("date DESC").paginate(page: params[:page], per_page: 5)
+        if params[:search]
+          @tradeshows = Tradeshow.search(params[:search]).order("date DESC").paginate(page: params[:page], per_page: 5)
+        else
+          @tradeshows = Tradeshow.all.order("date DESC").paginate(page: params[:page], per_page: 5)
+        end
 
       @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
         info_window = "#{venue.address}"

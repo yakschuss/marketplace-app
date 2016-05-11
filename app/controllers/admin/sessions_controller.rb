@@ -1,6 +1,7 @@
 class Admin::SessionsController < Admin::ApplicationController
 
   def new
+    @disable_search = true
   end
 
   def create

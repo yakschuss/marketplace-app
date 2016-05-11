@@ -1,4 +1,6 @@
 %nav.navbar
   .links-container
+    %a.navbar-link
+      = render partial: "layouts/search_form" unless @disable_search
     %a.navbar-link{:href => root_path} TradeShowMarket
     %a.navbar-link{:href => new_admin_session_path} Admin

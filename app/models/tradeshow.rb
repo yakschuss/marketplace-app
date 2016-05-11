@@ -1,20 +1,28 @@
 class Tradeshow < ActiveRecord::Base
+  #Associations
+
   has_many :booths
   belongs_to :venue
+
+  #CallBacks
   before_create :associated_venue
 
+  #Nested Associations
   accepts_nested_attributes_for :booths
-  accepts_nested_attributes_for :venue
 
+  #Methods
 
+#need to rework so there isn't default db writing unless accurate
   def associated_venue
-    closest_venue = Venue.near(self.location, 0.1).first
 
-    if closest_venue
-      self.venue = closest_venue
-    else
-      Venue.create!(name: self.venue_name, address: self.location)
+    tradeshow_venue = Venue.find_or_create_by(name: self.venue_name) do |venue|
+      venue.address = self.location
     end
+
+    self.venue = tradeshow_venue
   end
 
+  def self.search(search)
+    where("title LIKE ? OR location LIKE ?", "%#{search}%", "%#{search}%")
+  end
 end
