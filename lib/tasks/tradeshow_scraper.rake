@@ -3,7 +3,7 @@ task :scrape_eia => :environment do
 require 'nokogiri'
 require 'mechanize'
 require 'open-uri'
-            attribute_check = []
+
       url = "http://www.eventsinamerica.com/trade-shows"
 
       agent = Mechanize.new
@@ -11,7 +11,7 @@ require 'open-uri'
 
       agent.get(url)
       inner_agent.get(url)
-
+            booth_array = []
       agent.page.search('.sub-section li:nth-child(1) a').each do |link|
        inner_agent.page.link_with(href: link[:href]).click
 
@@ -117,15 +117,19 @@ require 'open-uri'
 
 
 
-              tradeshow = Tradeshow.create!(tradeshow_hash)
+             tradeshow = Tradeshow.create!(tradeshow_hash)
 
                     doc.css('#event-booth table tr').each do |tr|
-                           if tr.css("td").first.text.match(/^[0-9]/)
+
+                           if tr.css("td").first.text.match(/^[0-9]/) || tr.css('td').first.text.match(/\s[X, x]\s/) || tr.css('td').first.text.match(/(sq. ft.)/)
                               booth_hash[:incomplete_size] = tr.css("td").first.text
                               booth_hash[:cost] = tr.css("td")[1].text
                            else
                                 next
-                           end
+                        #booth_array << tr.css("td").first.text
+
+                            end
+
                            booth_hash[:tradeshow_id] = tradeshow.id
                            booth = Booth.create!(booth_hash)
                     end
